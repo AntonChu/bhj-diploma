@@ -1,18 +1,16 @@
-createRequest({
-    url, // адрес
-    data: { // произвольные данные, могут отсутствовать
-      email,
-      password,
-    },
+const createRequest = (options = {}) => {
+  createRequest({
+    url: this.URL + '/login',
+    method: 'POST',
     responseType: 'json',
-    method, // метод запроса
-    /*
-      Функция, которая сработает после запроса.
-      Если в процессе запроса произойдёт ошибка, её объект
-      должен быть в параметре err.
-      Если в запросе есть данные, они должны быть переданы в response.
-    */
-    onreadystatechange: function(){
-      console.log(response);
+    data,
+    callback: (err, response) => {
+      if (response && response.user) {
+        this.setCurrent(response.user);
+        console.log('xzcxzbvnm,bmnbvccvbngmh,j,hmgnhfdsafghj');
+      }
+      console.log('jbdgbdfbdf');
+      callback(err, response);
     }
   });
+};
