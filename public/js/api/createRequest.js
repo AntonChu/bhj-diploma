@@ -1,27 +1,29 @@
 const createRequest = (options = {}) => {
-  const request = new XMLHttpRequest;
+  const request = new XMLHttpRequest();
   request.responseType = 'json'; 
-  request.url = options.url;
+  let url = options.url;
   let formData = new FormData();
-  request.method = options.method;
+  // request.method = options.method;
 
-  if(request.method === 'GET'){
-    request.url += "?";
+  if(options.method === 'GET'){
+    url += "?";
     for (let item in options.data){
-      request.url += item + '=' + options.data[item] + '&';
+      url += item + '=' + options.data[item] + '&';
     }
-    request.url.slice(0, -1);
+    url.slice(0, -1);
   }else{
     for (let item in options.data){
-      formData.append(`${item}`, options.data[item]);
+      formData.append(item, options.data[item]);
     }
   }
 
-  request.open(request.method, request.url);
+  request.open(options.method, url);
   request.send(formData);
   request.onload = function(){
-    let err = null;
-    let response = xhr.response;
-    options.callback(err, response)
+    options.callback(null, request.response)
+  }
+
+  request.onerror = function(error){
+    return error;
   }
 };
