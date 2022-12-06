@@ -24,6 +24,6 @@ const createRequest = (options = {}) => {
   }
 
   request.onerror = function(error){
-    return error;
+    options.callback(request.error, null);
   }
 };
