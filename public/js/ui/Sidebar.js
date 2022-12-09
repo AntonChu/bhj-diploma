@@ -36,26 +36,22 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
-    const sideMenu = document.getElementsByClassName('menu-item');
-    const sideMenuArr = Array.from(sideMenu);
+    const sideMenuLogin = document.getElementsByClassName('menu-item_login');
+    const sideMenuRegister = document.getElementsByClassName('menu-item_register');
+    const sideMenuLogout = document.getElementsByClassName('menu-item_logout');
+    // const sideMenuArr = Array.from(sideMenu);
 
-    sideMenuArr.forEach(el => el.onclick = () => {
-      
-      if (el.classList.contains('logout')) {
-        User.logout();
-        App.setState('init');
-        return;
-      }
-
-      if (el.classList.contains('menu-item_login')) {
-        Modal(App.getModal('login')).open();
-        return;
-      }
-
-      if (el.classList.contains('menu-item_register')) {
-        new Modal(App.getModal('register')).open();
-        return;
-      }
-    })
+    sideMenuLogin[0].onclick = () => {
+      App.getModal('login').open();
+    }
+    
+    sideMenuRegister[0].onclick = () => {
+      App.getModal('register').open();
+    }
+    
+    sideMenuLogout[0].onclick = (event) => {
+      User.logout(event);
+      App.setState('init');
+    }
   }
 }
