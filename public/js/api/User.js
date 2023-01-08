@@ -50,7 +50,7 @@ class User {
       data,
       callback: (err, response) => {
         if (response && response.user) {
-          this.setCurrent(response.user);
+          this.current(response.user);
         }
         callback(err, response);
       }
@@ -64,7 +64,18 @@ class User {
    * User.setCurrent.
    * */
   static register(data, callback) {
-
+    createRequest({
+      url: this.URL + '/register',
+      method: 'POST',
+      responseType: 'json',
+      data,
+      callback: (err, response) => {
+        if (response && response.user) {
+          this.setCurrent(response.user);
+        }
+        callback(err, response);
+      }
+    });
   }
 
   /**
@@ -72,6 +83,17 @@ class User {
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
   static logout(callback) {
-
+    createRequest({
+      url: this.URL + '/logout',
+      method: 'POST',
+      responseType: 'json',
+      data,
+      callback: (err, response) => {
+        if (response && response.user) {
+          this.unsetCurrent();
+        }
+        callback(err, response);
+      }
+    });
   }
 }
