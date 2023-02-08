@@ -39,7 +39,6 @@ class Sidebar {
     const sideMenuLogin = document.getElementsByClassName('menu-item_login');
     const sideMenuRegister = document.getElementsByClassName('menu-item_register');
     const sideMenuLogout = document.getElementsByClassName('menu-item_logout');
-    // const sideMenuArr = Array.from(sideMenu);
 
     sideMenuLogin[0].onclick = () => {
       App.getModal('login').open();
@@ -49,9 +48,11 @@ class Sidebar {
       App.getModal('register').open();
     }
     
-    sideMenuLogout[0].onclick = (event) => {
-      User.logout(event);
-      App.setState('init');
-    }
+    sideMenuLogout[0].addEventListener('click', () => {
+      function callback() {
+        App.setState('init');
+      }
+      User.logout(callback)
+    })
   }
 }

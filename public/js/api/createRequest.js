@@ -1,7 +1,6 @@
 const createRequest = (options = {}) => {
   const request = new XMLHttpRequest();
   request.responseType = 'json';
-  request.withCredentials = true 
   let url = options.url;
   let formData = new FormData();
   // request.method = options.method;
