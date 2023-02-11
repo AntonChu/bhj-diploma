@@ -9,7 +9,8 @@ class User {
    * локальном хранилище.
    * */
   static setCurrent(user) {
-
+   
+    localStorage.setItem(user.name, {id: user.id, name: user.name})
   }
 
   /**
