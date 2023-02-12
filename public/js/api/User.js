@@ -34,7 +34,7 @@ class User {
    * */
   static fetch(callback) {
     createRequest({
-      url: this.URL + '/current',
+      url: URL + '/current',
       method: 'Get',
       responseType: 'json',
       data,
@@ -58,7 +58,7 @@ class User {
    * */
   static login(data, callback) {
     createRequest({
-      url: this.URL + '/login',
+      url: URL + '/login',
       method: 'POST',
       responseType: 'json',
       data,
@@ -79,7 +79,7 @@ class User {
    * */
   static register(data, callback) {
     createRequest({
-      url: this.URL + '/register',
+      url: URL + '/register',
       method: 'POST',
       responseType: 'json',
       data: data,
@@ -98,7 +98,7 @@ class User {
    * */
   static logout(callback) {
     createRequest({
-      url: this.URL + '/logout',
+      url: URL + '/logout',
       method: 'POST',
       responseType: 'json',
       data,
