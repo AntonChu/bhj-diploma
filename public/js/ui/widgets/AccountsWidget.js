@@ -14,7 +14,12 @@ class AccountsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-
+    if (!element) {
+      throw new Error('Счета не существует');
+    };
+    this.element = element;
+    this.registerEvents();
+    this.update();
   }
 
   /**
@@ -25,7 +30,14 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
-
+    document.getElementsByClassName('create-account')[0].onclick = ()  => {
+      App.getModal('modal-new-account');
+    };
+    Array.from(document.getElementsByClassName('account')).forEach(element => {
+      element.addEventListener('click', (item) => {
+        this.onSelectAccount(item);
+      })
+    });
   }
 
   /**
