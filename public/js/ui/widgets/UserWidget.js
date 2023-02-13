@@ -27,8 +27,7 @@ class UserWidget {
    * */
   update(){
     if (User.current()) {
-      userName = User.current().name;
-      this.element['user-name'] = localStorage.getItem('user').name;
+      this.element['user-name'] = User.current().name;
     }
   }
 }

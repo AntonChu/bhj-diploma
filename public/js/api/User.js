@@ -4,6 +4,7 @@
  * Имеет свойство URL, равное '/user'.
  * */
 class User {
+  static URL = '/user';
   /**
    * Устанавливает текущего пользователя в
    * локальном хранилище.
@@ -25,7 +26,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : undefined;
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   /**
@@ -34,18 +35,15 @@ class User {
    * */
   static fetch(callback) {
     createRequest({
-      url: URL + '/current',
+      url: this.URL + '/current',
       method: 'Get',
-      responseType: 'json',
-      data,
       callback: (err, response) => {
         if (response && response.user) {
           this.setCurrent(response.user);
-        }
-        callback(err, response);
-        if (!response.user) {
+        } else {
           this.unsetCurrent();
         }
+        callback(err, response);
       }
     });
   }
@@ -58,13 +56,12 @@ class User {
    * */
   static login(data, callback) {
     createRequest({
-      url: URL + '/login',
+      url: this.URL + '/login',
       method: 'POST',
-      responseType: 'json',
-      data,
+      data: data,
       callback: (err, response) => {
         if (response && response.user) {
-          this.current(response.user);
+          this.setCurrent(response.user);
         }
         callback(err, response);
       }
@@ -79,9 +76,8 @@ class User {
    * */
   static register(data, callback) {
     createRequest({
-      url: URL + '/register',
+      url: this.URL + '/register',
       method: 'POST',
-      responseType: 'json',
       data: data,
       callback: (err, response) => {
         if (response && response.user) {
@@ -98,10 +94,8 @@ class User {
    * */
   static logout(callback) {
     createRequest({
-      url: URL + '/logout',
+      url: this.URL + '/logout',
       method: 'POST',
-      responseType: 'json',
-      data,
       callback: (err, response) => {
         if (response && response.user) {
           this.unsetCurrent();

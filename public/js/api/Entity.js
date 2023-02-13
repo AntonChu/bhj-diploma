@@ -15,7 +15,6 @@ class Entity {
       data,
       callback,
       method: 'GET',
-      responseType: 'json'
     });
   }
 

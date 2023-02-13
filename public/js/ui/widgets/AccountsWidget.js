@@ -31,13 +31,15 @@ class AccountsWidget {
    * */
   registerEvents() {
     document.getElementsByClassName('create-account')[0].onclick = ()  => {
-      App.getModal('modal-new-account');
+      console.log('hello!');
+      App.getModal('#modal-new-account');
     };
-    Array.from(document.getElementsByClassName('account')).forEach(element => {
-      element.addEventListener('click', (item) => {
+    
+    this.element.addEventListener('click', (item) => {
+      if (item.classList.contains('account')) {
         this.onSelectAccount(item);
-      })
-    });
+      }  
+    })
   }
 
   /**
@@ -51,7 +53,9 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
-
+    if (User.current()) {
+      
+    }
   }
 
   /**
