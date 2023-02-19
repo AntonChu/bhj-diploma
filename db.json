@@ -17,6 +17,12 @@
     },
     {
       "id": "g457vskkle2zxju4"
+    },
+    {
+      "name": "Вася",
+      "email": "Vasya@gmail.com",
+      "password": "1234",
+      "id": "g457vtmfle45nd1n"
     }
   ],
   "accounts": [

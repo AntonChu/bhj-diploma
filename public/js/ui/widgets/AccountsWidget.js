@@ -3,6 +3,8 @@
  * отображения счетов в боковой колонке
  * */
 
+// const { response } = require("express");
+
 class AccountsWidget {
   /**
    * Устанавливает текущий элемент в свойство element
@@ -31,13 +33,13 @@ class AccountsWidget {
    * */
   registerEvents() {
     document.getElementsByClassName('create-account')[0].onclick = ()  => {
-      console.log('hello!');
       App.getModal('#modal-new-account');
     };
     
-    this.element.addEventListener('click', (item) => {
-      if (item.classList.contains('account')) {
-        this.onSelectAccount(item);
+    this.element.addEventListener('click', (event) => {
+      console.log(event.srcElement.classList);
+      if (event.srcElement.classList.contains('account')) {
+        this.onSelectAccount(event.srcElement);
       }  
     })
   }
@@ -54,7 +56,12 @@ class AccountsWidget {
    * */
   update() {
     if (User.current()) {
-      
+      // Account.list(data, (err, response) => {
+      //   if(response) {
+      //     this.clear();
+      //     response.something.forEach(item => this.renderItem(item));
+      //   }
+      // })
     }
   }
 

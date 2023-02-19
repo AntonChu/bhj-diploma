@@ -62,6 +62,8 @@ class User {
       callback: (err, response) => {
         if (response && response.user) {
           this.setCurrent(response.user);
+        } else {
+          throw new Error('user is not registred');
         }
         callback(err, response);
       }

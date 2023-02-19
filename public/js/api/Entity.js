@@ -12,7 +12,7 @@ class Entity {
   static list(data, callback){
     createRequest({
       url: this.URL,
-      data,
+      data: data.data,
       callback,
       method: 'GET',
     });
