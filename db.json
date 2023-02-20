@@ -23,6 +23,12 @@
       "email": "Vasya@gmail.com",
       "password": "1234",
       "id": "g457vtmfle45nd1n"
+    },
+    {
+      "name": "Вася",
+      "email": "oleg@demo.ru",
+      "password": "1234",
+      "id": "g457v1actlebhhu6z"
     }
   ],
   "accounts": [
