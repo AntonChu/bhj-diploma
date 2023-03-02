@@ -33,11 +33,12 @@ class AccountsWidget {
    * */
   registerEvents() {
     document.getElementsByClassName('create-account')[0].onclick = ()  => {
-      App.getModal('#modal-new-account');
+      console.log('button is pushed')
+      App.getModal('createAccount');
     };
     
     this.element.addEventListener('click', (event) => {
-      console.log(event.srcElement.classList);
+      // console.log(event.srcElement.classList);
       if (event.srcElement.classList.contains('account')) {
         this.onSelectAccount(event.srcElement);
       }  
@@ -56,10 +57,10 @@ class AccountsWidget {
    * */
   update() {
     if (User.current()) {
-      Account.list(data, (err, response) => {
+      Account.list(User.current, (err, response) => {
         if(response) {
           this.clear();
-          response.something.forEach(item => this.renderItem(item));
+          response.data.forEach(item => this.renderItem(item));
         }
       })
     }
@@ -108,6 +109,7 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(data){
+    console.log(data);
     data.forEach(el => {
       this.element.insertAdjacentHTML('beforeEnd', this.getAccountHTML(el));
     })
