@@ -96,7 +96,6 @@ class App {
    * App.getModal( 'login' ); // извелекает App.modals.login
    * */
   static getModal(modalName) {
-    console.log('should show')
     return this.modals[modalName];
   }
 

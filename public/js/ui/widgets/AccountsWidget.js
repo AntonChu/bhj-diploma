@@ -33,14 +33,12 @@ class AccountsWidget {
    * */
   registerEvents() {
     document.getElementsByClassName('create-account')[0].onclick = ()  => {
-      console.log('button is pushed')
-      App.getModal('createAccount');
+      App.getModal('createAccount').open();
     };
     
     this.element.addEventListener('click', (event) => {
-      // console.log(event.srcElement.classList);
-      if (event.srcElement.classList.contains('account')) {
-        this.onSelectAccount(event.srcElement);
+      if (event.target.closest('li').classList.contains('account')) {
+        this.onSelectAccount(event.target.closest('.account'));
       }  
     })
   }
@@ -72,7 +70,7 @@ class AccountsWidget {
    * в боковой колонке
    * */
   clear() {
-    Array.from(document.getElementsByClassName('account')).every((item) => {
+    Array.from(document.getElementsByClassName('account')).forEach((item) => {
       item.remove();
     })
   }
@@ -85,10 +83,11 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
-    Array.from(document.getElementsByClassName('account')).every((item) => {
+    Array.from(document.getElementsByClassName('account')).forEach((item) => {
       item.classList.remove('active');
-      element.classList.add('active');
     })
+    element.classList.add('active');
+    App.showPage( 'transactions', { account_id: `${element.getAttribute('data-id')}` });
   }
 
   /**
@@ -109,9 +108,6 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(data){
-    console.log(data);
-    data.forEach(el => {
-      this.element.insertAdjacentHTML('beforeEnd', this.getAccountHTML(el));
-    })
+    this.element.insertAdjacentHTML('beforeEnd', this.getAccountHTML(data));
   }
 }

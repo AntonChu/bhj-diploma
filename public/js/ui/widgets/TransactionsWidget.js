@@ -27,11 +27,11 @@ class TransactionsWidget {
    * */
   registerEvents() {
     document.getElementsByClassName('create-income-button')[0].onclick = () => {
-      App.getModal('#modal-new-income');
+      App.getModal('newIncome').open();
     }
 
     document.getElementsByClassName('create-expense-button')[0].onclick = () => {
-      App.getModal('#modal-new-expense');
+      App.getModal('newExpense').open();
     }
   }
 }
