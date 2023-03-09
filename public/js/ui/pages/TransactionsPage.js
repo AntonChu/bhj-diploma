@@ -35,6 +35,7 @@ class TransactionsPage {
   registerEvents() {
     document.getElementsByClassName('remove-account')[0].onclick = () => {
       this.removeAccount();
+      console.log('pressed remove');
     }
 
     this.element.addEventListener("click", (event) => {
@@ -55,13 +56,14 @@ class TransactionsPage {
    * для обновления приложения
    * */
   removeAccount() {
+    console.log(this.lastOptions)
     if (!this.lastOptions) {
       return;
     }
     alert('вы действительно хотите удалить счет?');
-    this.clear()
     Account.remove({ id: this.lastOptions.account_id }, (err, response) => {
       if (response) {
+        this.clear();
         App.updateWidgets();
         App.updateForms();
       }
@@ -94,9 +96,8 @@ class TransactionsPage {
     if (!options) {
       return;
     }
-
+     this.clear();
     this.lastOptions = options;
-    const accountActive = document.getElementsByClassName('account active')[0];
 
     Account.get(options.account_id, (err, response) => {
       if(response) {
@@ -119,6 +120,7 @@ class TransactionsPage {
    * Устанавливает заголовок: «Название счёта»
    * */
   clear() {
+    this.element.getElementsByClassName('content')[0].innerHTML = '';
     this.renderTransactions([]);
     this.renderTitle('Название счета');
     this.lastOptions = null;
@@ -136,23 +138,43 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date){
-
+    console.log(date)
+    const year = date.slice(0, 4);
+    const month = [
+      'января',
+      'февраля',
+      'марта',
+      'апреля',
+      'мая',
+      'июня',
+      'июля',
+      'августа',
+      'сентября',
+      'октября',
+      'ноября',
+      'декабря'
+    ][+date.slice(5, 7) - 1];
+    const day = date.slice(8, 10);
+    const hours = date.slice(11, 13);
+    const minutes = date.slice(14, 16);
+    return `«${day} ${month} ${year} г. в ${hours}:${minutes}»`;
   }
 
   /**
    * Формирует HTML-код транзакции (дохода или расхода).
    * item - объект с информацией о транзакции
    * */
+  // ${this.formatDate(item.created_at)}
   getTransactionHTML(item){
     return (
-      `<div class="transaction transaction_${item.type === 'income' ? 'income' : 'expense'}expense row">
+      `<div class="transaction transaction_${item.type}expense row">
         <div class="col-md-7 transaction__details">
           <div class="transaction__icon">
             <span class="fa fa-money fa-2x"></span>
           </div>
           <div class="transaction__info">
-            <h4 class="transaction__title">Новый будильник</h4>
-            <div class="transaction__date">${item.name}</div>
+            <h4 class="transaction__title">${item.name}</h4>
+            <div class="transaction__date">${item.created_at}</div>
           </div>
         </div>
         <div class="col-md-3">

@@ -46,11 +46,6 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
-    },
-    {
-      "name": "Сбербанк",
-      "user_id": "g457v1actlebhhu6z",
-      "id": "g457wxkflf0wc7ee"
     }
   ],
   "transactions": [
@@ -188,42 +183,6 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
-    },
-    {
-      "id": "g457wxkklf0wczc2",
-      "type": "income",
-      "name": "Зарплата",
-      "sum": 150000,
-      "account_id": "g457wxkflf0wc7ee",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-09T09:18:54.433Z"
-    },
-    {
-      "id": "g457wxrwlf0x2ugr",
-      "type": "income",
-      "name": "debt",
-      "sum": 600,
-      "account_id": "g457wxkflf0wc7ee",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-09T09:39:01.178Z"
-    },
-    {
-      "id": "g457wy2ulf0xf8wc",
-      "type": "income",
-      "name": "yfitk",
-      "sum": 200,
-      "account_id": "g457wxkflf0wc7ee",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-09T09:48:39.755Z"
-    },
-    {
-      "id": "g457wy40lf0xhdzf",
-      "type": "expense",
-      "name": "credit",
-      "sum": 13000,
-      "account_id": "g457wxkflf0wc7ee",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-09T09:50:19.658Z"
     }
   ]
 }
