@@ -37,10 +37,12 @@ class TransactionsPage {
       this.removeAccount();
     }
 
-    Array.from(document.getElementsByClassName('transaction__remove')).forEach(el => el.onclick = () => {
-// дописать!!!
-    })
-    
+    this.element.addEventListener("click", (event) => {
+      if (event.target.closest(".transaction__remove")) {
+        let id = event.target.closest(".transaction__remove").dataset.id;
+        this.removeTransaction(id);
+      }
+    });
   }
 
   /**
@@ -56,9 +58,8 @@ class TransactionsPage {
     if (!this.lastOptions) {
       return;
     }
-    console.log(this.lastOptions);
     alert('вы действительно хотите удалить счет?');
-    Account.remove(this.lastOptions, (err, response) => {
+    Account.remove({ id: this.lastOptions.account_id }, (err, response) => {
       if (response) {
         App.updateWidgets();
         App.updateForms();
@@ -74,8 +75,11 @@ class TransactionsPage {
    * */
   removeTransaction( id ) {
     alert('вы действительно хотите удалить транзакцию?');
-    Transaction.remove(id, (err, response) => {
+    this.clear();
+    Transaction.remove({ id }, (err, response) => {
       if (response) {
+        App.updateWidgets();
+        App.updateForms();
         App.update();
       }
     })
@@ -95,16 +99,16 @@ class TransactionsPage {
     this.lastOptions = options;
     const accountActive = document.getElementsByClassName('account active')[0];
 
-    Account.get(accountActive.getAttribute('data-id'), (err, response) => {
+    Account.get(options.account_id, (err, response) => {
       if(response) {
         this.renderTitle(response.data.name);
       }
     })
 
-    Transaction.list(options.account_id, (err, response) => {
+    Transaction.list(options, (err, response) => {
       if (response) {
         console.log(response);
-        response.data.forEach(el => this.renderTransactions(el))  //поправить на el.что-то как добьюсь ответа сервера
+        response.data.forEach(el => this.renderTransactions(el));
       }
     })
 
@@ -149,7 +153,7 @@ class TransactionsPage {
           </div>
           <div class="transaction__info">
             <h4 class="transaction__title">Новый будильник</h4>
-            <div class="transaction__date">${item.created_at}</div>
+            <div class="transaction__date">${item.name}</div>
           </div>
         </div>
         <div class="col-md-3">
@@ -171,6 +175,6 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data){
-    this.getElementsByClassName('content')[0].insertAdjacentHTML('beforeEnd', this.getTransactionHTML(data));
+    document.getElementsByClassName('content')[0].insertAdjacentHTML('beforeEnd', this.getTransactionHTML(data));
   }
 }

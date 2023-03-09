@@ -50,42 +50,7 @@
     {
       "name": "Сбербанк",
       "user_id": "g457v1actlebhhu6z",
-      "id": "g457wnplleu7ulp1"
-    },
-    {
-      "name": "Вася",
-      "user_id": "g457v1actlebhhu6z",
-      "id": "g457wnroleu7vopa"
-    },
-    {
-      "name": "Вася1",
-      "user_id": "g457v1actlebhhu6z",
-      "id": "g457wnthleu7xrnp"
-    },
-    {
-      "name": "hello",
-      "user_id": "g457v1actlebhhu6z",
-      "id": "g457wnuvleu7zsuj"
-    },
-    {
-      "name": "sfssdff",
-      "user_id": "g457v1actlebhhu6z",
-      "id": "g457wny6leu84xkt"
-    },
-    {
-      "name": "s",
-      "user_id": "g457v1actlebhhu6z",
-      "id": "g457wnyyleu85wmm"
-    },
-    {
-      "name": "dfwdfwf",
-      "user_id": "g457v1actlebhhu6z",
-      "id": "g457wo0mleu87017"
-    },
-    {
-      "name": "g",
-      "user_id": "g457v1actlebhhu6z",
-      "id": "g457wo1eleu87j99"
+      "id": "g457wxkflf0wc7ee"
     }
   ],
   "transactions": [
@@ -225,103 +190,22 @@
       "user_id": "1"
     },
     {
-      "id": "g457wp8tleuq2t1g",
+      "id": "g457wxkklf0wczc2",
       "type": "income",
-      "name": "зарплата",
-      "sum": 500000,
-      "account_id": "g457wnroleu7vopa",
+      "name": "Зарплата",
+      "sum": 150000,
+      "account_id": "g457wxkflf0wc7ee",
       "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T01:36:24.963Z"
+      "created_at": "2023-03-09T09:18:54.433Z"
     },
     {
-      "id": "g457wpahleuq48g8",
-      "type": "expense",
-      "name": "кино",
-      "sum": 500,
-      "account_id": "g457wnroleu7vopa",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T01:37:31.591Z"
-    },
-    {
-      "id": "g457wpaqleuq52fa",
+      "id": "g457wxrwlf0x2ugr",
       "type": "income",
-      "name": "зп",
-      "sum": 200000,
-      "account_id": "g457wnplleu7ulp1",
+      "name": "debt",
+      "sum": 600,
+      "account_id": "g457wxkflf0wc7ee",
       "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T01:38:10.437Z"
-    },
-    {
-      "id": "g457wpb2leuq6jpy",
-      "type": "income",
-      "name": "долг",
-      "sum": 500,
-      "account_id": "g457wnuvleu7zsuj",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T01:39:19.509Z"
-    },
-    {
-      "id": "g457wpc7leuqb66m",
-      "type": "income",
-      "name": "ва",
-      "sum": 1,
-      "account_id": "g457wnplleu7ulp1",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T01:42:55.245Z"
-    },
-    {
-      "id": "g457wpdaleuqcz27",
-      "type": "income",
-      "name": "Вася",
-      "sum": 12,
-      "account_id": "g457wnplleu7ulp1",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T01:44:19.326Z"
-    },
-    {
-      "id": "g457wpnblev74yio",
-      "type": "income",
-      "name": "Вася",
-      "sum": 100,
-      "account_id": "g457wnplleu7ulp1",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T09:33:58.847Z"
-    },
-    {
-      "id": "g457wpqblev7bvnn",
-      "type": "income",
-      "name": "loto",
-      "sum": 300,
-      "account_id": "g457wnplleu7ulp1",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T09:39:21.730Z"
-    },
-    {
-      "id": "g457wpr5lev7cact",
-      "type": "expense",
-      "name": "Вася",
-      "sum": 2000,
-      "account_id": "g457wnplleu7ulp1",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T09:39:40.780Z"
-    },
-    {
-      "id": "g457wqhflevtak72",
-      "type": "income",
-      "name": "Сбербанк",
-      "sum": 500,
-      "account_id": "g457wnplleu7ulp1",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T19:54:11.773Z"
-    },
-    {
-      "id": "g457wqhtlevtb2k3",
-      "type": "income",
-      "name": "Сбербанк",
-      "sum": 200,
-      "account_id": "g457wnplleu7ulp1",
-      "user_id": "g457v1actlebhhu6z",
-      "created_at": "2023-03-05T19:54:35.570Z"
+      "created_at": "2023-03-09T09:39:01.178Z"
     }
   ]
 }
