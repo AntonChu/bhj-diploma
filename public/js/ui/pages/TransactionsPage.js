@@ -59,6 +59,7 @@ class TransactionsPage {
       return;
     }
     alert('вы действительно хотите удалить счет?');
+    this.clear()
     Account.remove({ id: this.lastOptions.account_id }, (err, response) => {
       if (response) {
         App.updateWidgets();
@@ -75,12 +76,10 @@ class TransactionsPage {
    * */
   removeTransaction( id ) {
     alert('вы действительно хотите удалить транзакцию?');
-    this.clear();
     Transaction.remove({ id }, (err, response) => {
       if (response) {
-        App.updateWidgets();
-        App.updateForms();
         App.update();
+        this.update();
       }
     })
   }
