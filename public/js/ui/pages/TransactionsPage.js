@@ -35,7 +35,6 @@ class TransactionsPage {
   registerEvents() {
     document.getElementsByClassName('remove-account')[0].onclick = () => {
       this.removeAccount();
-      console.log('pressed remove');
     }
 
     this.element.addEventListener("click", (event) => {
@@ -56,13 +55,16 @@ class TransactionsPage {
    * для обновления приложения
    * */
   removeAccount() {
-    console.log(this.lastOptions)
     if (!this.lastOptions) {
       return;
     }
-    alert('вы действительно хотите удалить счет?');
+
+    if(!confirm('вы действительно хотите удалить счет?')) {
+      return;
+    };
+
     Account.remove({ id: this.lastOptions.account_id }, (err, response) => {
-      if (response) {
+      if (response && response.success) {
         this.clear();
         App.updateWidgets();
         App.updateForms();
@@ -77,11 +79,13 @@ class TransactionsPage {
    * либо обновляйте текущую страницу (метод update) и виджет со счетами
    * */
   removeTransaction( id ) {
-    alert('вы действительно хотите удалить транзакцию?');
+
+    if(!confirm('вы действительно хотите удалить транзакцию?')) {
+      return;
+    }
     Transaction.remove({ id }, (err, response) => {
-      if (response) {
+      if (response && response.success) {
         App.update();
-        this.update();
       }
     })
   }
@@ -96,19 +100,18 @@ class TransactionsPage {
     if (!options) {
       return;
     }
-     this.clear();
+    this.clear();
     this.lastOptions = options;
 
     Account.get(options.account_id, (err, response) => {
-      if(response) {
+      if(response && response.success) {
         this.renderTitle(response.data.name);
       }
     })
 
     Transaction.list(options, (err, response) => {
-      if (response) {
-        console.log(response);
-        response.data.forEach(el => this.renderTransactions(el));
+      if (response && response.success) {
+        this.renderTransactions(response.data);
       }
     })
 
@@ -138,7 +141,6 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date){
-    console.log(date)
     const year = date.slice(0, 4);
     const month = [
       'января',
@@ -157,7 +159,7 @@ class TransactionsPage {
     const day = date.slice(8, 10);
     const hours = date.slice(11, 13);
     const minutes = date.slice(14, 16);
-    return `«${day} ${month} ${year} г. в ${hours}:${minutes}»`;
+    return `${day} ${month} ${year} г. в ${hours}:${minutes}`;
   }
 
   /**
@@ -166,15 +168,16 @@ class TransactionsPage {
    * */
   // ${this.formatDate(item.created_at)}
   getTransactionHTML(item){
+    const date = this.formatDate(item.created_at);
     return (
-      `<div class="transaction transaction_${item.type}expense row">
+      `<div class="transaction transaction_${item.type} row">
         <div class="col-md-7 transaction__details">
           <div class="transaction__icon">
             <span class="fa fa-money fa-2x"></span>
           </div>
           <div class="transaction__info">
             <h4 class="transaction__title">${item.name}</h4>
-            <div class="transaction__date">${item.created_at}</div>
+            <div class="transaction__date">${date}</div>
           </div>
         </div>
         <div class="col-md-3">
@@ -196,6 +199,7 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data){
-    document.getElementsByClassName('content')[0].insertAdjacentHTML('beforeEnd', this.getTransactionHTML(data));
+    const renderArea = document.getElementsByClassName('content')[0];
+    data.forEach(el => renderArea.insertAdjacentHTML('beforeend', this.getTransactionHTML(el)))
   }
 }
